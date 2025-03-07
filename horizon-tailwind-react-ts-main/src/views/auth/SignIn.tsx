@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import InputField from "components/fields/InputField";
-import Checkbox from "components/checkbox";
+
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -88,14 +88,7 @@ const SignIn = () => {
             onChange={handleChange}
           />
           {/* Checkbox */}
-          <div className="mb-4 flex items-center justify-between px-2">
-            <div className="flex items-center">
-              <Checkbox />
-              <p className="ml-2 text-sm font-medium text-navy-700 dark:text-white">
-                Keep me logged In
-              </p>
-            </div>
-          </div>
+
           <button
             type="submit"
             disabled={loading}

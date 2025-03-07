@@ -100,11 +100,7 @@ const Dashboard = () => {
           title={"Tổng số ngành"}
           subtitle={"4"}
         />
-        <Widget
-          icon={<IoMdHome className="h-6 w-6" />}
-          title={"Total Projects"}
-          subtitle={"$2433"}
-        />
+
       </div>
 
       <div className="mt-0 grid grid-cols-2 gap-5 w-full">

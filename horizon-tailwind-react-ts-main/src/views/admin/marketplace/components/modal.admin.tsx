@@ -37,12 +37,16 @@ interface IProps {
 const ModalAdmin = (props: IProps) => {
     const { openModal, setOpenModal, reloadTable, dataInit, setDataInit } = props;
     const [roles, setRoles] = useState<IRoleOption[]>([]);
-
-
-
     const [form] = Form.useForm();
 
-
+    useEffect(() => {
+        if (dataInit?.id) {
+            form.setFieldsValue({
+                ...dataInit,
+                role: { label: dataInit.role?.name, value: dataInit.role?.id }
+            });
+        }
+    }, [dataInit, form]);
     const submitAdmin = async (valuesForm: any) => {
         const { name, email, password, field, role } = valuesForm;
         if (dataInit?.id) {
@@ -108,7 +112,9 @@ const ModalAdmin = (props: IProps) => {
     }
 
     const handleReset = async () => {
+        console.log("form1:", form.getFieldsValue());
         form.resetFields();
+        console.log("form2:", form.getFieldsValue());
         setDataInit(null);
         setRoles([]);
         setOpenModal(false);
@@ -139,7 +145,6 @@ const ModalAdmin = (props: IProps) => {
                 open={openModal}
                 modalProps={{
                     onCancel: () => { handleReset() },
-                    afterClose: () => handleReset(),
                     destroyOnClose: true,
                     width: 900,
                     keyboard: false,
@@ -151,10 +156,7 @@ const ModalAdmin = (props: IProps) => {
                 preserve={false}
                 form={form}
                 onFinish={submitAdmin}
-                initialValues={dataInit?.id ? {
-                    ...dataInit,
-                    role: { label: dataInit.role?.name, value: dataInit.role?.id }
-                } : {}}
+
 
             >
                 <Row gutter={16}>

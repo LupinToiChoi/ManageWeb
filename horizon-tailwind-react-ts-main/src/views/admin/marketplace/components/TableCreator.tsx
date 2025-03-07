@@ -30,9 +30,11 @@ const TableTopCreators: React.FC<TableTopCreatorsProps> = ({ tableData, reloadTa
   const handleEdit = (row: IAdmin) => {
     setDataInit(row);
     setOpenModal(true);
+    tableRef.current?.reset();
   };
 
   const handleCreate = () => {
+    tableRef.current?.reset();
     setDataInit(null);
     setOpenModal(true);
   };
@@ -44,14 +46,10 @@ const TableTopCreators: React.FC<TableTopCreatorsProps> = ({ tableData, reloadTa
           'Content-Type': 'application/json',
         },
       });
-      message.success("Delete admin successfully", 5);
+      message.success("Delete admin successfully");
       reloadTable(); // Reload the table data
     } catch (error) {
-      console.error("Error deleting admin:", error);
-      notification.error({
-        message: 'An error occurred',
-        description: 'Cannot delete admin',
-      });
+      message.error("Failed to delete admin");
     }
   };
   return (
@@ -73,7 +71,7 @@ const TableTopCreators: React.FC<TableTopCreatorsProps> = ({ tableData, reloadTa
 
       </header>
 
-      <div className="mt-8 overflow-x-scroll xl:overflow-x-hidden">
+      <div className="mt-0 overflow-x-scroll xl:overflow-x-hidden">
         <table className="w-full">
           <thead>
             <tr className="!border-px !border-gray-400">
@@ -81,9 +79,7 @@ const TableTopCreators: React.FC<TableTopCreatorsProps> = ({ tableData, reloadTa
               <th className="border-b border-gray-200 pb-2 pr-4 pt-4 text-start">Email</th>
               <th className="border-b border-gray-200 pb-2 pr-4 pt-4 text-start">Field</th>
               <th className="border-b border-gray-200 pb-2 pr-4 pt-4 text-start">Role</th>
-
               <th className="border-b border-gray-200 pb-2 pr-4 pt-4 text-start">Actions</th>
-
 
             </tr>
           </thead>

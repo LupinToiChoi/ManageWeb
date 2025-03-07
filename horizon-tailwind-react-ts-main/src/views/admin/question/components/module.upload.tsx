@@ -85,6 +85,7 @@ const ModalUpload = (props: IProps) => {
 
     const handleReset = async () => {
         form.resetFields();
+        console.log("form:", form.getFieldsValue());
         setOpenModalUpload(false);
         setUpload(null);
         setSingleQuestion(null);

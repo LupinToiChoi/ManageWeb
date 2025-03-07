@@ -8,6 +8,7 @@ import EditCourse from "./EditCourses";
 import { API_BASE_URL } from "service/api.config";
 import Access from "views/admin/access";
 import { ALL_PERMISSIONS } from "views/admin/permission/components/modules";
+import { message } from "antd";
 
 type RowObj = {
   id: number;
@@ -104,6 +105,9 @@ const Project: React.FC<ProjectProps> = ({ tableData }) => {
     });
     if (res.ok) {
       fetchCourses();
+      message.success("Delete course successfully");
+    } else {
+      message.error("Failed to delete course");
     }
   };
 
@@ -121,7 +125,7 @@ const Project: React.FC<ProjectProps> = ({ tableData }) => {
             engaged by providing meaningful information.
           </p>
         </div>
-        {/* Project 1 */}
+        {/* Project 1
         <div className="flex w-full items-center justify-between rounded-2xl bg-white p-3 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
           <div className="flex items-center">
             <div className="">
@@ -151,14 +155,20 @@ const Project: React.FC<ProjectProps> = ({ tableData }) => {
               onClick={handleAddCourse}
             >Add</button>
           </div>
-        </div>
+        </div> */}
         {showModal && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white p-6 rounded-lg shadow-lg h-4/4 w-2/4 max-w-4xl mt-10">
+          <div className="fixed inset-0 z-5 ml-20 flex items-center justify-center  mt-20">
+            <div className="fixed inset-0  bg-gray-800 bg-opacity-75 opacity-50"></div>
+            <div className="relative bg-white rounded-lg shadow-xl p-6 w-full max-w-2xl mx-4">
               <LessonList lessons={lessons} courseId={courseId} fetchLessons={fetchLessons} />
-              <button onClick={() => setShowModal(false)} className="mt-4 bg-red-500 text-white px-4 py-2 rounded">
-                Close
-              </button>
+              <div className="flex justify-end mt-4"> {/* Căn nút Close sang phải */}
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="bg-red-500 text-white px-6 py-2 rounded-md hover:bg-red-600 transition-colors"
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         )}
@@ -169,7 +179,7 @@ const Project: React.FC<ProjectProps> = ({ tableData }) => {
             </div>
           </div>
         )}
-        <div className="mt-8 overflow-x-scroll xl:overflow-x-hidden">
+        <div className="mt-0 overflow-x-scroll xl:overflow-x-hidden">
           <table className="w-full">
             <thead>
               <tr className="!border-px !border-gray-400">

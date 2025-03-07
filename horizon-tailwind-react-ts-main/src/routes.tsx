@@ -13,10 +13,14 @@ import SignIn from "views/auth/SignIn";
 // Icon Imports
 import {
   MdHome,
-  MdOutlineShoppingCart,
-  MdBarChart,
-  MdPerson,
+  MdAdminPanelSettings,
+  MdGroups,
+  MdSchool,
   MdLock,
+  MdAssignment,
+  MdLogin,
+  MdQuiz,
+  MdForum,
 } from "react-icons/md";
 import PermissionPage from "views/admin/permission/permission";
 import RolePage from "views/admin/role/role";
@@ -54,7 +58,7 @@ const routes: RouteItem[] = [
     name: "Manage admins",
     layout: "/admin",
     path: "account",
-    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    icon: <MdAdminPanelSettings className="h-6 w-6" />,
     component: <AdminAccount />,
     permission: {
       module: "SYSTEM_MANAGEMENT"
@@ -64,14 +68,14 @@ const routes: RouteItem[] = [
     name: "Manage users",
     layout: "/admin",
     path: "user",
-    icon: <MdBarChart className="h-6 w-6" />,
+    icon: <MdGroups className="h-6 w-6" />,
     component: <DataTables />,
   },
   {
     name: "Manage courses",
     layout: "/admin",
     path: "courses",
-    icon: <MdPerson className="h-6 w-6" />,
+    icon: <MdSchool className="h-6 w-6" />,
     component: <Profile />,
     permission: {
       module: "CONTENT_MANAGEMENT"
@@ -91,7 +95,7 @@ const routes: RouteItem[] = [
     name: "Role",
     layout: "/admin",
     path: "role",
-    icon: <MdLock className="h-6 w-6" />,
+    icon: <MdAssignment className="h-6 w-6" />,
     component: <RolePage />,
     permission: {
       module: "SYSTEM_MANAGEMENT"
@@ -101,7 +105,7 @@ const routes: RouteItem[] = [
     name: "Sign in",
     layout: "/auth",
     path: "sign-in",
-    icon: <MdLock className="h-6 w-6" />,
+    icon: <MdLogin className="h-6 w-6" />,
     component: <SignIn />,
     hidden: true,
   },
@@ -109,7 +113,7 @@ const routes: RouteItem[] = [
     name: "Question",
     layout: "/admin",
     path: "question",
-    icon: <MdHome className="h-6 w-6" />,
+    icon: <MdQuiz className="h-6 w-6" />,
     component: <QuestionPage />,
     permission: {
       module: "CONTENT_MANAGEMENT"
@@ -119,9 +123,8 @@ const routes: RouteItem[] = [
     name: "Forum",
     layout: "/admin",
     path: "forum",
-    icon: <MdHome className="h-6 w-6" />,
+    icon: <MdForum className="h-6 w-6" />,
     component: <DiscussionManagement />,
-
   }
 ];
 

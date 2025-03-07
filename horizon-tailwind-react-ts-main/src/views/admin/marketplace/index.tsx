@@ -25,6 +25,7 @@ const AdminAccount = () => {
       }
 
       const data = await response.json();
+
       setTableData(data.result);
     } catch (error) {
       console.error("Error fetching data:", error);

@@ -402,7 +402,7 @@ const QuestionPage = () => {
 
                             if (entity.quesType === 'LISTENING') {
                                 handleUploadClick(entity.id);
-                                setDataInit(entity);
+
                             } else {
                                 message.warning('Upload is only available for Listening questions.');
                             }

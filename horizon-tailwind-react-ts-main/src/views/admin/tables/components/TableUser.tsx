@@ -4,6 +4,7 @@ import { API_BASE_URL, API_ENDPOINTS } from "service/api.config"; // Import API 
 import { useAuth } from "hooks/useAuth"; // Import useAuth hook
 import { useNavigate } from "react-router-dom";
 import Access from "views/admin/access";
+import { message } from "antd";
 
 type RowObj = {
     id: number;
@@ -69,7 +70,7 @@ const TableUser: React.FC = () => {
                 setTableData(tableData.filter(row => row.id !== id));
                 console.log("User deleted successfully");
             } else {
-                console.error("Failed to delete user");
+                message.error("Failed to delete user");
             }
         } catch (error) {
             console.error("Error deleting user:", error);
@@ -85,7 +86,7 @@ const TableUser: React.FC = () => {
                 </div>
             </header>
 
-            <div className="mt-8 overflow-x-scroll xl:overflow-x-hidden">
+            <div className="mt-0 overflow-x-scroll xl:overflow-x-hidden">
                 <table className="w-full" >
                     <thead>
                         <tr className="!border-px !border-gray-400">

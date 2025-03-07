@@ -216,7 +216,7 @@ const RolePage = () => {
     ];
     return (
         <Access
-            permission={ALL_PERMISSIONS.SYSTEM_MANAGEMENT.PERMISSIONS.GET_PAGINATE}
+            permission={{ module: "SYSTEM_MANAGEMENT" }}
         >
             <div>
 

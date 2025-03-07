@@ -112,7 +112,7 @@ const ModalPermission = (props: IProps) => {
                 open={openModal}
                 modalProps={{
                     onCancel: () => { handleReset() },
-                    afterClose: () => handleReset(),
+
                     destroyOnClose: true,
                     width: 900,
                     keyboard: false,
@@ -124,7 +124,7 @@ const ModalPermission = (props: IProps) => {
                 preserve={false}
                 form={form}
                 onFinish={submitPermission}
-                initialValues={dataInit || {}}
+
             >
                 <Row gutter={16}>
                     <Col lg={12} md={12} sm={24} xs={24}>
