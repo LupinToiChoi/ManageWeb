@@ -51,11 +51,6 @@ const TableUser: React.FC = () => {
         navigate(`/admin/profile/${userId}`); // Điều hướng đến trang profile
     };
 
-    const handleEdit = (row: RowObj) => {
-        console.log("Edit:", row);
-        // Thực hiện chức năng sửa
-    };
-
     const handleDelete = async (id: number) => {
         if (!id) return;
         try {
