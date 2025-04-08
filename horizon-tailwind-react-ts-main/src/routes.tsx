@@ -128,7 +128,7 @@ const routes: RouteItem[] = [
     component: <DiscussionManagement />,
   },
   {
-    name: "Hide",
+    name: "Result",
     layout: "/admin",
     path: "learning",
     icon: <MdForum className="h-6 w-6" />,

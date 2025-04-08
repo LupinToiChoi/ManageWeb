@@ -11,13 +11,15 @@ import {
     Select,
     Typography,
     Progress,
-    Spin
+    Spin,
+    App
 } from "antd";
 import { useAuth } from "hooks/useAuth";
 import { API_BASE_URL } from "service/api.config";
 import { SearchOutlined, BarChartOutlined, FileTextOutlined } from "@ant-design/icons";
 import type { TableColumnsType } from "antd";
 import moment from "moment";
+import Access from "../access";
 
 const { TabPane } = Tabs;
 const { Title, Text } = Typography;
@@ -39,7 +41,7 @@ interface LearningResult {
     speakingProgress: number;
     readingProgress: number;
     writingProgress: number;
-    overallScore: number;
+    overallProgress: number;
     userId?: number; // Thêm để lưu trữ tạm thời
     userName?: string; // Thêm để lưu trữ tạm thời
 }
@@ -236,7 +238,7 @@ const LearningResults: React.FC = () => {
                     color: score < 2.0 ? 'red' : score < 3.5 ? 'orange' : 'green',
                     fontWeight: 'bold'
                 }}>
-                    {score}
+                    {score.toFixed(2)}
                 </span>
             ),
         },
@@ -250,7 +252,7 @@ const LearningResults: React.FC = () => {
                     color: score < 2.0 ? 'red' : score < 3.5 ? 'orange' : 'green',
                     fontWeight: 'bold'
                 }}>
-                    {score}
+                    {score.toFixed(2)}
                 </span>
             ),
         },
@@ -264,7 +266,7 @@ const LearningResults: React.FC = () => {
                     color: score < 2.0 ? 'red' : score < 3.5 ? 'orange' : 'green',
                     fontWeight: 'bold'
                 }}>
-                    {score}
+                    {score.toFixed(2)}
                 </span>
             ),
         },
@@ -278,21 +280,21 @@ const LearningResults: React.FC = () => {
                     color: score < 2.0 ? 'red' : score < 3.5 ? 'orange' : 'green',
                     fontWeight: 'bold'
                 }}>
-                    {score}
+                    {score.toFixed(2)}
                 </span>
             ),
         },
         {
             title: 'Điểm tổng',
-            dataIndex: 'overallScore',
-            key: 'overallScore',
+            dataIndex: 'overallProgress',
+            key: 'overallProgress',
             width: 100,
             render: (score) => (
                 <span style={{
                     color: score < 2.0 ? 'red' : score < 3.5 ? 'orange' : 'green',
                     fontWeight: 'bold'
                 }}>
-                    {score}
+                    {score.toFixed(2)}
                 </span>
             ),
         },
@@ -353,10 +355,10 @@ const LearningResults: React.FC = () => {
                     </div>
                 ))}
                 <div className="mt-4">
-                    <Title level={4} style={{ marginBottom: '16px' }}>Điểm tổng: {selectedResult.overallScore}</Title>
+                    <Title level={4} style={{ marginBottom: '16px' }}>Điểm tổng: {selectedResult.overallProgress.toFixed(2)}</Title>
                     <Progress
-                        percent={selectedResult.overallScore * 20} // Chuyển đổi thang điểm 0-5 sang 0-100
-                        status={selectedResult.overallScore < 2.0 ? "exception" : "active"}
+                        percent={selectedResult.overallProgress * 20} // Chuyển đổi thang điểm 0-5 sang 0-100
+                        status={selectedResult.overallProgress < 2.0 ? "exception" : "active"}
                         strokeColor={{
                             '0%': '#108ee9',
                             '100%': '#87d068',
@@ -380,6 +382,9 @@ const LearningResults: React.FC = () => {
     );
 
     return (
+
+
+
         <div className="flex flex-col gap-5">
             <Card title="Bộ lọc kết quả học tập" className="w-full">
                 <div className="flex flex-wrap gap-4 items-end">
@@ -487,7 +492,20 @@ const LearningResults: React.FC = () => {
                 )}
             </Modal>
         </div>
+
     );
 };
 
-export default LearningResults;
+export default () => (
+    <Access
+        permission={{ module: "CONTENT_MANAGEMENT" }}
+
+    >
+        <App>
+            <LearningResults />
+        </App>
+    </Access>
+
+
+
+);
