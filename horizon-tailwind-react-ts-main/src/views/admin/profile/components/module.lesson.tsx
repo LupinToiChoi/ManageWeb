@@ -35,7 +35,7 @@ const ModuleLesson = (props: IProps) => {
     useEffect(() => {
         const fetchQuestions = async () => {
             try {
-                const response = await fetch(`${API_BASE_URL}/api/v1/questions?page=1&size=10&point=5`, {
+                const response = await fetch(`${API_BASE_URL}/api/v1/questions?page=1&size=1000`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -65,6 +65,7 @@ const ModuleLesson = (props: IProps) => {
         setListLesson(null);
     }
     const handleQuestionChange = async (newSelectedIds: number[]) => {
+        newSelectedIds = newSelectedIds || [];
         const addedIds = newSelectedIds.filter(id => !selectedQuestionIds.includes(id));
         const removedIds = selectedQuestionIds.filter(id => !newSelectedIds.includes(id));
 
@@ -229,9 +230,7 @@ const ModuleLesson = (props: IProps) => {
                                 name="questionIds"
                                 options={questions}
                                 mode="multiple"
-                                rules={[
-                                    { required: true, message: 'Please select at least one question' },
-                                ]}
+
                                 placeholder="Select question"
                                 onChange={handleQuestionChange}
 
